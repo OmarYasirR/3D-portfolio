@@ -9,7 +9,8 @@ const MobileBook = () => {
   const [pageElements, setPageElements] = useState([]);
   const pagesRef = useRef();
 
-  const handleNavigateTo = (targetIndex) => {
+  const handleNavigateTo =  useCallback(
+  (targetIndex) => {
       if (targetIndex === currentPage) return;
 
       if(targetIndex < currentPage) {
@@ -44,9 +45,11 @@ const MobileBook = () => {
       }
       
     }, 300);
-  }
+  },
+  [currentPage, pageElements]
+);
 
-  const { Pages, loading } = usePages(handleNavigateTo);
+  const { Pages, loading } = usePages(handleNavigateTo, true, currentPage);
 
   const handleNextPage = () => {
     if(currentPage >= Pages.length - 1) return

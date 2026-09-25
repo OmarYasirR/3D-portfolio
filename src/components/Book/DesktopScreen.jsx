@@ -58,6 +58,7 @@ const DesktopScreen = () => {
     let step = 0;
     const interval = setInterval(() => {
       step += 1;
+      console.log(targetPairIndex)
       if (step === targetPairIndex) {
         clearInterval(interval);
       }

@@ -39,7 +39,7 @@ function chunk(array, size) {
  *   DesktopScreen since it needs the flip refs — passed in rather than
  *   built here so this hook stays free of flip/animation concerns.
  */
-export function usePages(onNavigate, isMobile) {
+export function usePages(onNavigate, isMobile = false, currentIndex) {
   const { skills, workExperience, education, services } = portfolioData;
 
   const [projects, setProjects] = useState([]);
@@ -48,6 +48,7 @@ export function usePages(onNavigate, isMobile) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   useEffect(() => {
+    console.log(isMobile)
     let cancelled = false;
     setLoading(true);
     setProjectsError(null);
@@ -139,7 +140,6 @@ export function usePages(onNavigate, isMobile) {
 
 
     const contentStartNum = 2; // 1 cover, 2 index pages (1..2), then content pages start at 2 
-    const startingIndex = 1
     const contentSections = sections.map((s, i) => ({
       ...s,
       pageNum: contentStartNum + i,
@@ -167,7 +167,7 @@ export function usePages(onNavigate, isMobile) {
             pages={pagesContentIndexes.slice(i, i + INDEX_ENTRIES_PER_PAGE)}
             onPageNavigate={onNavigate} 
             showHeader={i === 1}
-            isMobile
+            isMobile = {isMobile}
           />,
       });
       }
@@ -181,7 +181,7 @@ export function usePages(onNavigate, isMobile) {
         pageNum: i,
       }));
     return numberedContentWithIndexes;
-  }, [loading, filteredProjects, activeFilter]);
+  }, [loading, filteredProjects, activeFilter, isMobile, currentIndex]);
 
   
   const  pagePairs = useMemo(() => {
@@ -197,7 +197,7 @@ export function usePages(onNavigate, isMobile) {
     }
 
     return pairs;
-  }, [contentSections, activeFilter]);
+  }, [contentSections, activeFilter, isMobile]);
 
   return {
     Pages: contentSections,

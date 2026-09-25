@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const IndexPage = ({ pages, onPageNavigate, showHeader, isMobile }) => {
+
+  useEffect(() => {
+    console.log(isMobile)
+  }, [])
+  
   return (
     <div className="w-full h-full p-8 bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="flex flex-col h-full">
@@ -17,13 +22,13 @@ const IndexPage = ({ pages, onPageNavigate, showHeader, isMobile }) => {
               <div
                 key={index}
                 className="flex items-center justify-between p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white cursor-pointer group border border-gray-200"
-                onClick={() => onPageNavigate(isMobile ? page.pageNum : page.pageIndex)}
+                onClick={() => onPageNavigate(isMobile ? page.pageNum : page.indexNum)}
               >
                 <div className="flex items-center space-x-4">
                   {/* Page Number Badge */}
                   <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full shadow-md group-hover:shadow-lg transition-shadow">
                     <span className="text-white font-bold text-sm">
-                      {page.pageNum}
+                      {page.pageNum -2}
                     </span>
                   </div>
 

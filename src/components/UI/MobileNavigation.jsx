@@ -59,7 +59,7 @@ const MobileNavigation = ({
             {currentSectionTitle}
           </span>
           <span className="text-xs opacity-75">
-            {currentPage + 1}/{totalPages}
+            {currentPage}/{totalPages}
           </span>
           <i
             className={`bx bx-chevron-down ml-1 transition-transform duration-300 ${showMenu ? "rotate-180" : ""}`}

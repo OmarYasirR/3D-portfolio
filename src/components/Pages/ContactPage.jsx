@@ -46,11 +46,7 @@ const ContactPage = () => {
         setTimeout(() => setMessageStatus("Send Message"), 3000);
         console.error(error);
       });
-  };
-
-  useEffect(() => {
-    console.log(import.meta.env.VITE_EMAIL_TEMPLATE)
-  }, [])
+  }
   
 
   return (

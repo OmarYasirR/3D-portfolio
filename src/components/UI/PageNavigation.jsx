@@ -14,11 +14,6 @@ const PageNavigation = ({
     fliping();
   };
 
-  useEffect(() => {
-    if (isCover) {
-      console.log(isMobile);
-    }
-  }, []);
 
   if (isCover) {
     return (
