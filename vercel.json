@@ -1,13 +1,7 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/projects.js" },
-    { "src": "/(.*)", "dest": "/" }
-  ],
   "rewrites": [
-    {
-      "source": "/((?!.*\\.).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "/api/projects.js" },
+    { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
   ]
 }
