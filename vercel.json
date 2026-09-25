@@ -3,5 +3,11 @@
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/projects.js" },
     { "src": "/(.*)", "dest": "/" }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!.*\\.).*)",
+      "destination": "/index.html"
+    }
   ]
 }
