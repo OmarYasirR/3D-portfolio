@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FetchReadmeImage } from './lib/fetchReadmeImage.js';
+import { FetchReadmeImage } from './lib/FetchReadmeImage.js';
 
 // Server-side only — plain env var names, NOT prefixed with VITE_ or
 // REACT_APP_. Set these in your Vercel project's Environment Variables
