@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { fetchReadmeImage } from './_lib/fetchReadmeImage.js';
+import { FetchReadmeImage } from './_lib/fetchReadmeImage.js';
 
 // Server-side only — plain env var names, NOT prefixed with VITE_ or
 // REACT_APP_. Set these in your Vercel project's Environment Variables
@@ -106,7 +106,7 @@ export default async function handler(req, res) {
         const match = vercelDeployments.find(
           (dep) => normalizeName(repo.name) === normalizeName(dep.name)
         );
-        const imgURL = await fetchReadmeImage(repo.name, OWNER).catch(() => null);
+        const imgURL = await FetchReadmeImage(repo.name, OWNER).catch(() => null);
         return mapRepoToProject(repo, match?.url || null, imgURL);
       })
     );
