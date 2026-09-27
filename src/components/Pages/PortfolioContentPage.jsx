@@ -58,7 +58,7 @@ const PortfolioContentPage = ({
           No projects match this filter.
         </div>
       ) : (
-        <div className={`grid grid-cols-2 gap-4`}>
+        <div className={`grid grid-cols-2 gap-4 m-auto`}>
           {projects.map((project) => (
             <ProjectCard
               key={project.id}

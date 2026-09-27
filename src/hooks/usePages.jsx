@@ -75,7 +75,7 @@ export function usePages(onNavigate, isMobile = false, currentIndex) {
     ];
 
     // portfolio pages
-    const portfolioChunks = chunk(filteredProjects, isMobile? 2: 4);
+    const portfolioChunks = chunk(filteredProjects, 2);
     portfolioChunks.forEach((projectsForPage, i) => {
       sections.push({
         id: `portfolio-${i}`,
