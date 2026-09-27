@@ -12,7 +12,6 @@ import CoverPage from "../components/Pages/CoverPage";
 import PortfolioContentPage from "../components/Pages/PortfolioContentPage";
 import { portfolioData } from "../data/portfolioData";
 
-const PROJECTS_PER_PAGE = 4;
 const INDEX_ENTRIES_PER_PAGE = 4;
 
 // All the GitHub/Vercel fetching + merging + README-image lookup happens
@@ -33,12 +32,6 @@ function chunk(array, size) {
   return chunks;
 }
 
-/**
- * @param {(pairIndex: number) => void} onNavigate - called with a PAIR index
- *   (not a raw page number) when an index-page entry is tapped. Owned by
- *   DesktopScreen since it needs the flip refs — passed in rather than
- *   built here so this hook stays free of flip/animation concerns.
- */
 export function usePages(onNavigate, isMobile = false, currentIndex) {
   const { skills, workExperience, education, services } = portfolioData;
 
@@ -48,7 +41,6 @@ export function usePages(onNavigate, isMobile = false, currentIndex) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   useEffect(() => {
-    console.log(isMobile)
     let cancelled = false;
     setLoading(true);
     setProjectsError(null);
@@ -83,12 +75,10 @@ export function usePages(onNavigate, isMobile = false, currentIndex) {
     ];
 
     // portfolio pages
-    const portfolioChunks = chunk(filteredProjects, PROJECTS_PER_PAGE);
+    const portfolioChunks = chunk(filteredProjects, isMobile? 2: 4);
     portfolioChunks.forEach((projectsForPage, i) => {
       sections.push({
         id: `portfolio-${i}`,
-        // Only the first portfolio page gets an index entry — the rest
-        // are reachable by flipping forward, not double-listed.
         title: "Portfolio",
         component: (
           <PortfolioContentPage
@@ -96,6 +86,7 @@ export function usePages(onNavigate, isMobile = false, currentIndex) {
             showHeader={i === 0}
             activeFilter={activeFilter}
             onFilterChange={setActiveFilter}
+            isMobile={isMobile}
           />
         ),
       });

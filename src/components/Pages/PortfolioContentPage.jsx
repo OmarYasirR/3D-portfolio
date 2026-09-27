@@ -19,7 +19,6 @@ const PortfolioContentPage = ({
   activeFilter = 'all',
   onFilterChange,
   onOpenProject,
-  columns = 2,
 }) => {
   const [selectedProject, setSelectedProject] = useState(null);
 
