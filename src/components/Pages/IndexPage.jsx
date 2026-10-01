@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 
 const IndexPage = ({ pages, onPageNavigate, showHeader, isMobile }) => {
 
-  useEffect(() => {
-    console.log(isMobile)
-  }, [])
   
   return (
     <div className="w-full h-full p-8 bg-gradient-to-br from-blue-50 to-indigo-100">

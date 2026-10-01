@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Paper from "./Paper";
 import Page from "./Page";
 
@@ -6,8 +6,8 @@ import { usePages } from "../../hooks/usePages";
 
 const DesktopScreen = () => {
   const [isStartd, setIsStartd] = useState(false);
-  const [papers, setPapers] = useState([]);
   const [isFliping, setIsFliping] = useState(false);
+  const [leftPages, SetLeftPages] = useState([])
   const papersRef = useRef(null);
 
   // Mutable flip counters — refs, not state, so interval-driven index
@@ -15,6 +15,7 @@ const DesktopScreen = () => {
   // a stale closure.
   const leftIndexRef = useRef(0);
   const rightIndexRef = useRef(0);
+
 
   // ---- Flip mechanics ----
   const flippingStyle = (element, stylesArr) => {
@@ -28,17 +29,13 @@ const DesktopScreen = () => {
     }
   };
 
-  const flipRight = (pageIndex) => {
-    if (pageIndex === 0) setIsStartd(true);
-    const el = papers[pageIndex];
-    const style = [{ transform: "rotateY(180deg)" }, { zIndex: leftIndexRef.current }];
-    flippingStyle(el, style);
-    leftIndexRef.current += 1;
-    rightIndexRef.current -= 1;
-  };
+
 
   const flipLeft = (pageIndex) => {
-    const el = papers[pageIndex];
+    const children = papersRef.current ? Array.from(papersRef.current?.children): []
+    console.log(children.length)
+    const el = children[pageIndex];
+    SetLeftPages(prev => prev.slice(0, -1))
     const style = [{ transform: "rotateY(0deg)" }, { zIndex: rightIndexRef.current + 1 }];
     flippingStyle(el, style);
     leftIndexRef.current -= 1;
@@ -58,22 +55,50 @@ const DesktopScreen = () => {
     let step = 0;
     const interval = setInterval(() => {
       step += 1;
-      console.log(targetPairIndex)
       if (step === targetPairIndex) {
         clearInterval(interval);
       }
       flipRight(step)
     }, 300);
-  };
+  }
 
   const { pagePairs, loading } = usePages(navigateToIndex);
 
+  
+  //   const papers = useMemo(() => {
+  //   if(papersRef.current){
+  //     const children = Array.from(papersRef.current?.children);
+  //     return children
+  //   } else{ return [] }
+  // }, [pagePairs.length, rightIndexRef.current])
+
+
+    const flipRight = (pageIndex) => {
+    if (pageIndex === 0) setIsStartd(true);
+    const children = papersRef.current ? Array.from(papersRef.current?.children): []
+    console.log(children.length)
+    const el = children[pageIndex];
+    SetLeftPages(prev => [...prev, el])
+    const style = [{ transform: "rotateY(180deg)" }, { zIndex: leftIndexRef.current }];
+    console.log(leftIndexRef.current)
+    flippingStyle(el, style);
+    leftIndexRef.current += 1;
+    rightIndexRef.current -= 1;
+  }
+
+
+
   useEffect(() => {
+    console.log(leftPages)
+    console.log(pagePairs?.length)
     if (papersRef.current) {
       const children = Array.from(papersRef.current.children);
-      setPapers(children);
+    
       rightIndexRef.current = children.length;
-      leftIndexRef.current = 0;
+      // leftIndexRef.current = 0;
+    }
+    if(leftPages.length){
+      leftPages.forEach((el, i) => Object.assign(el.style, { zIndex: i }))
     }
   }, [pagePairs.length]);
 
@@ -91,7 +116,7 @@ const DesktopScreen = () => {
           }`}
         >
           {pagePairs.map((item, index) => (
-            <Paper key={item.id} style={{ zIndex: pagePairs.length - index }}>
+            <Paper key={item.id} style={{ zIndex: pagePairs.length - index }} pageName={item.id} >
               <Page
                 content={item.front.component}
                 pageNum={item.front.number !== 0 ? item.front.number : ""}

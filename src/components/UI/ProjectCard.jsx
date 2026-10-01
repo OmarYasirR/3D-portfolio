@@ -2,7 +2,7 @@ const CATEGORY_META = {
   fullstack: { icon: 'bx-layer', name: 'Full Stack', gradient: 'from-purple-500/20 to-blue-500/20', iconColor: 'text-purple-600/80' },
   mobile: { icon: 'bx-mobile-alt', name: 'Mobile App', gradient: 'from-green-500/20 to-emerald-500/20', iconColor: 'text-green-600/80' },
   frontend: { icon: 'bx-desktop', name: 'Frontend', gradient: 'from-blue-500/20 to-cyan-500/20', iconColor: 'text-blue-600/80' },
-  backend: { icon: 'bx-server', name: 'Backend', gradient: 'from-orange-500/20 to-red-500/20', iconColor: 'text-orange-600/80' },
+  vanilajs: { icon: 'bx-server', name: 'Vanila Js', gradient: 'from-orange-500/20 to-red-500/20', iconColor: 'text-orange-600/80' },
   default: { icon: 'bx-code-block', name: 'Project', gradient: 'from-primary/20 to-secondary/20', iconColor: 'text-primary/80' },
 };
 
@@ -11,9 +11,9 @@ export const getCategoryMeta = (category) => CATEGORY_META[category] || CATEGORY
 const ProjectCard = ({ project, onOpen }) => {
   const meta = getCategoryMeta(project.category);
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 m-2 flex-1 basis-[50%]">
       {project.imgURL ? (
-        <img src={project.imgURL} alt={project.title} className="h-28 w-full object-cover" />
+        <img src={project.imgURL} alt={project.title} className="h-28 w-full object-fit" />
       ) : (
         <div className={`h-28 bg-gradient-to-br ${meta.gradient} flex flex-col items-center justify-center`}>
           <i className={`bx ${meta.icon} text-4xl ${meta.iconColor} mb-1`}></i>

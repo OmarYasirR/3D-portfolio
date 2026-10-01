@@ -1,17 +1,6 @@
 import { useState } from "react";
 import ProjectCard, { getCategoryMeta } from "../UI/ProjectCard";
 
-/**
- * Renders ONE physical book page's worth of projects. All pagination
- * decisions (which projects go on this page) are made by the parent
- * (DesktopScreen/MobileBook) via usePagedItems — this component just
- * displays whatever slice it's handed, and never scrolls.
- *
- * showHeader/activeFilter/onFilterChange are only passed on the FIRST
- * portfolio page — the filter control lives there, and changing it is
- * what causes the parent to re-measure and resize the whole section.
- */
-const GRID_COLS = { 1: "grid-cols-1", 2: "grid-cols-2" };
 
 const PortfolioContentPage = ({
   projects,
@@ -34,7 +23,7 @@ const PortfolioContentPage = ({
             My Projects
           </h1>
           <div className="flex flex-wrap justify-center gap-2">
-            {["all", "fullstack", "mobile", "frontend", "backend"].map(
+            {["all", "fullstack", "mobile", "frontend", "vanilajs"].map(
               (cat) => (
                 <button
                   key={cat}
@@ -58,7 +47,7 @@ const PortfolioContentPage = ({
           No projects match this filter.
         </div>
       ) : (
-        <div className={`grid grid-cols-2 gap-4 m-auto`}>
+        <div className={`flex justify-center ${showHeader ? 'items-start':'items-center'}  h-full w-full`}>
           {projects.map((project) => (
             <ProjectCard
               key={project.id}

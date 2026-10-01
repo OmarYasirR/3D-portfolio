@@ -11,12 +11,10 @@ import IndexPage from "../components/Pages/IndexPage";
 import CoverPage from "../components/Pages/CoverPage";
 import PortfolioContentPage from "../components/Pages/PortfolioContentPage";
 import { portfolioData } from "../data/portfolioData";
+// import { fetchProjects } from "../api/fetchProjects.js"
 
 const INDEX_ENTRIES_PER_PAGE = 4;
 
-// All the GitHub/Vercel fetching + merging + README-image lookup happens
-// server-side in /api/projects.js — the client never sees
-// GITHUB_TOKEN/VERCEL_TOKEN, it just calls your own API route.
 async function fetchProjects() {
   const res = await axios.get("/api/projects");
   return res.data.projects;
@@ -46,6 +44,7 @@ export function usePages(onNavigate, isMobile = false, currentIndex) {
     setProjectsError(null);
     fetchProjects()
       .then((data) => {
+        console.log(data)
         if (!cancelled) setProjects(data);
       })
       .catch((err) => {

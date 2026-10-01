@@ -6,10 +6,10 @@ export const portfolioData = {
     description:
       "Hi, I'm a FullStack Developer. Enthusiastic MERN Stack Developer with solid foundation in JavaScript ecosystem. Skilled in building responsive web applications using Next.js and React for frontend and Node.js with Express for backend development. Experienced in MongoDB database management and REST API development. Quick learner passionate about continuous improvement and collaborative development.",
     socialMedia: [
-      { icon: "bx bxl-facebook", link: "#" },
-      { icon: "bx bxl-twitter", link: "#" },
-      { icon: "bx bxl-github", link: "#" },
-      { icon: "bx bxl-linkedin-square", link: "#" },
+      { icon: "bx bxl-facebook", link: "https://web.facebook.com/omar.yasir.dfaalla" },
+      { icon: "bx bxl-twitter", link: "https://x.com/omaryasir5712" },
+      { icon: "bx bxl-github", link: "https://github.com/OmarYasirR" },
+      { icon: "bx bxl-linkedin-square", link: "https://www.linkedin.com/in/omar-yasir-dfaalla-488a95222/" },
     ],
   },
   workExperience: [

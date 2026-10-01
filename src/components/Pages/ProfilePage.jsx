@@ -5,14 +5,19 @@ import { portfolioData } from '../../data/portfolioData';
 const ProfilePage = () => {
   const { profile } = portfolioData;
 
-  const handleDownloadCV = () => {
-    // Add download CV functionality
-    console.log('Download CV clicked');
-  };
+const handleDownloadCV = () => {
+  const link = document.createElement('a');
+  link.href = '/cv.pdf';
+  link.download = 'cv.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
   const handleContactMe = () => {
     // Add contact me functionality
     console.log('Contact Me clicked');
+    
   };
 
   return (
@@ -32,9 +37,6 @@ const ProfilePage = () => {
       <div className="btn-box flex mt-2">
         <Button variant="primary" className="mx-4" onClick={handleDownloadCV}>
           Download CV
-        </Button>
-        <Button variant="secondary" className="mx-4" onClick={handleContactMe}>
-          Contact Me!
         </Button>
       </div>
     </div>
