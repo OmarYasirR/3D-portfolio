@@ -8,8 +8,8 @@ const WorkExperiencePage = ({ exp, showHeader }) => {
       )}
 
       <div className="">
-        <div className="bg-white p-6 rounded-lg border-l-4 border-primary shadow-lg transition-all duration-300">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+        <div className="bg-white p-4 rounded-lg border-l-4 border-primary shadow-lg transition-all duration-300">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
             <div className="flex items-center gap-4 mb-3 md:mb-0">
               <div className="bg-primary/10 p-2 rounded-lg">
                 <i className={`${exp.icon} text-xl text-primary`}></i>
@@ -26,7 +26,7 @@ const WorkExperiencePage = ({ exp, showHeader }) => {
             </span>
           </div>
 
-          <p className="text-gray-700 mb-4">{exp.description}</p>
+          <p className="text-gray-700 mb-3">{exp.description}</p>
 
           {/* Achievements & Technologies Side by Side */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">

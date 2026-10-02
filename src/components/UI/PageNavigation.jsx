@@ -22,7 +22,7 @@ const PageNavigation = ({
           onClick={handleClick}
           disabled={disabled}
           aria-label={disabled ? "Loading portfolio" : "Open portfolio"}
-          className={`px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 flex items-center space-x-2 group/btn backdrop-blur-sm border border-white/20 ${
+          className={`px-4 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 flex items-center space-x-2 group/btn backdrop-blur-sm border border-white/20 ${
             disabled
               ? "bg-white/10 text-white/60 cursor-not-allowed"
               : "bg-white/20 hover:bg-white/30 text-white hover:shadow-xl transform hover:scale-105"

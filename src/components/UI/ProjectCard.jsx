@@ -11,19 +11,19 @@ export const getCategoryMeta = (category) => CATEGORY_META[category] || CATEGORY
 const ProjectCard = ({ project, onOpen }) => {
   const meta = getCategoryMeta(project.category);
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 m-2 flex-1 basis-[50%]">
+    <div className="grid grid-cols-1 grid-rows-[3fr_7fr] bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 m-2 h-[380px] w-full flex-1">
       {project.imgURL ? (
-        <img src={project.imgURL} alt={project.title} className="h-28 w-full object-fit" />
+        <img src={project.imgURL} alt={project.title} className="h-36 w-full object-fit" />
       ) : (
-        <div className={`h-28 bg-gradient-to-br ${meta.gradient} flex flex-col items-center justify-center`}>
+        <div className={`h-36 bg-gradient-to-br ${meta.gradient} flex flex-col items-center justify-center`}>
           <i className={`bx ${meta.icon} text-4xl ${meta.iconColor} mb-1`}></i>
           <span className={`text-sm font-medium ${meta.iconColor}`}>{meta.name}</span>
         </div>
       )}
-      <div className="p-4">
+      <div className="p-4 pt-2 min-h-0 flex flex-col justify-evenly">
         <h3 className="font-semibold text-gray-800 mb-1 line-clamp-2">{project.title}</h3>
-        <p className="text-gray-600 text-sm line-clamp-2 mb-3">{project.description}</p>
-        <div className="flex flex-wrap gap-1 mb-3">
+        <p className="text-gray-600 text-sm line-clamp-2">{project.description}</p>
+        <div className="flex flex-wrap gap-1">
           {project.technologies.slice(0, 3).map((tech) => (
             <span key={tech} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">{tech}</span>
           ))}

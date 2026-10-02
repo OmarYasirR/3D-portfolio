@@ -4,7 +4,7 @@ import Paper from "./Paper";
 import MobileNavigation from "../UI/MobileNavigation";
 import { usePages } from "../../hooks/usePages";
 
-const MobileBook = () => {
+const MobileScreen = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageElements, setPageElements] = useState([]);
   const pagesRef = useRef();
@@ -73,7 +73,7 @@ const MobileBook = () => {
   return (
     <div
       ref={pagesRef}
-      className="mobile-book w-full h-full relative max-w-[480px] transition-all ease-in-out duration-500 animate-show-book"
+      className="mobile-book w-[96%] h-[37rem] relative max-w-[480px] transition-all ease-in-out duration-500 animate-show-book m-auto"
     >
       {Pages.map((page, i) => (
         <Paper isMobile key={page.id} style={{ zIndex: Pages.length - i }}>
@@ -103,4 +103,4 @@ const MobileBook = () => {
   );
 };
 
-export default MobileBook;
+export default MobileScreen;

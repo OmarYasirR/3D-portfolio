@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import MobileBook from './MobileBook';
+import MobileScreen from './MobileScreen';
 import DesktopScreen from './DesktopScreen';
 
 const Book = ({isMobile}) => {
   
 
-  return (isMobile ? <MobileBook /> : <DesktopScreen />);
+  return (isMobile ? <MobileScreen /> : <DesktopScreen />);
 };
 
 export default Book;

@@ -47,7 +47,7 @@ const PortfolioContentPage = ({
           No projects match this filter.
         </div>
       ) : (
-        <div className={`flex justify-center ${showHeader ? 'items-start':'items-center'}  h-full w-full`}>
+        <div className={`grid grid-cols-2 gap-2 justify-center ${showHeader ? 'items-start':'items-center'}`}>
           {projects.map((project) => (
             <ProjectCard
               key={project.id}

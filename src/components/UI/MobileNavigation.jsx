@@ -39,7 +39,7 @@ const MobileNavigation = ({
       )}
       {/* Section Indicator with Menu */}
       {/* apply glass effect (backdrop-blur) */}
-      <div className="flex flex-col items-center fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+      <div className="flex flex-col items-center fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-fit">
         <button
           onClick={() => setShowMenu(!showMenu)}
           aria-label="Jump to section"
@@ -53,9 +53,9 @@ const MobileNavigation = ({
     "
         >
           {/* top glass highlight */}
-          <span className="pointer-events-none absolute inset-x-6 top-px h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+          <span className="pointer-events-none absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
-          <span className="mx-2 font-medium drop-shadow-sm">
+          <span className="mx-4 font-medium drop-shadow-sm text-nowrap">
             {currentSectionTitle}
           </span>
           <span className="text-xs opacity-75">

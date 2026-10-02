@@ -92,6 +92,7 @@ async function getVercelDeployments() {
       headers: { Authorization: `Bearer ${VERCEL_TOKEN}` },
       params: { limit: 100 }, // fetch enough to cover your projects
     });
+    console.log('Fetched Vercel deployments:', res.data.deployments);
     return res.data.deployments || [];
   } catch (err) {
     console.error('Failed to fetch Vercel deployments:', err.message);
@@ -148,7 +149,7 @@ export async function fetchProjects() {
       ),
       getVercelDeployments(),
     ]);
-
+    
     const projects = await Promise.all(
       reposRes.data.map(async (repo) => {
         const match = vercelDeployments.find(
