@@ -44,7 +44,6 @@ export function usePages(onNavigate, isMobile = false, currentIndex) {
     setProjectsError(null);
     fetchProjects()
       .then((data) => {
-        console.log(data)
         if (!cancelled) setProjects(data);
       })
       .catch((err) => {

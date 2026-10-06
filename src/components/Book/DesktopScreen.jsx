@@ -33,7 +33,6 @@ const DesktopScreen = () => {
 
   const flipLeft = (pageIndex) => {
     const children = papersRef.current ? Array.from(papersRef.current?.children): []
-    console.log(children.length)
     const el = children[pageIndex];
     SetLeftPages(prev => prev.slice(0, -1))
     const style = [{ transform: "rotateY(0deg)" }, { zIndex: rightIndexRef.current + 1 }];
@@ -76,11 +75,9 @@ const DesktopScreen = () => {
     const flipRight = (pageIndex) => {
     if (pageIndex === 0) setIsStartd(true);
     const children = papersRef.current ? Array.from(papersRef.current?.children): []
-    console.log(children.length)
     const el = children[pageIndex];
     SetLeftPages(prev => [...prev, el])
     const style = [{ transform: "rotateY(180deg)" }, { zIndex: leftIndexRef.current }];
-    console.log(leftIndexRef.current)
     flippingStyle(el, style);
     leftIndexRef.current += 1;
     rightIndexRef.current -= 1;
@@ -89,8 +86,6 @@ const DesktopScreen = () => {
 
 
   useEffect(() => {
-    console.log(Pages)
-    console.log(pagePairs?.length)
     if (papersRef.current) {
       const children = Array.from(papersRef.current.children);
     
