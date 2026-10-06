@@ -16,7 +16,7 @@ const PortfolioContentPage = ({
   const closeProjectModal = () => setSelectedProject(null);
 
   return (
-    <div className="portfolio-page w-full h-full overflow-hidden p-4">
+    <div className="portfolio-page overflow-hidden p-4">
       {showHeader && (
         <div className="mb-4">
           <h1 className="text-2xl font-bold text-gray-800 text-center mb-3">
@@ -60,7 +60,7 @@ const PortfolioContentPage = ({
 
       {selectedProject && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-gray/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={closeProjectModal}
         >
           <div
@@ -83,7 +83,7 @@ const PortfolioContentPage = ({
                 {selectedProject.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {selectedProject.technologies.map((tech) => (
+                {selectedProject.technologies.slice(0, 4).map((tech) => (
                   <span
                     key={tech}
                     className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"

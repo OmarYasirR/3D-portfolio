@@ -1,8 +1,8 @@
 const WorkExperiencePage = ({ exp, showHeader }) => {
   return (
-    <div className="flex flex-col p-4 h-full w-full">
+    <div className="flex flex-col p-2 h-full w-full">
       {showHeader && (
-        <h1 className="title text-3xl font-bold text-center mb-4">
+        <h1 className="title text-3xl font-bold text-center mb-2">
           Work Experience
         </h1>
       )}
@@ -26,12 +26,12 @@ const WorkExperiencePage = ({ exp, showHeader }) => {
             </span>
           </div>
 
-          <p className="text-gray-700 mb-3">{exp.description}</p>
+          <p className="text-gray-700 mb-1 text-sm">{exp.description}</p>
 
           {/* Achievements & Technologies Side by Side */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 text-sm">
             <div>
-              <h4 className="font-semibold text-gray-700 mb-2">
+              <h4 className="font-semibold text-gray-700 mb-1">
                 Achievements:
               </h4>
               <ul className="space-y-1">

@@ -29,17 +29,17 @@ const MobileNavigation = ({
     return pages[currentPage]?.id === "cover" ? "Cover" : "Index";
   }, [pages, currentPage]);
 
-  return (
+return (  
     <>
       {showMenu && (
         <div
-          className="fixed inset-0 z-40 bg-dark/10 backdrop-blur-[2px] transition-opacity"
+          className="fixed inset-0 z-60 bg-dark/10 backdrop-blur-[2px] transition-opacity"
           onClick={() => setShowMenu(false)}
         />
       )}
       {/* Section Indicator with Menu */}
       {/* apply glass effect (backdrop-blur) */}
-      <div className="flex flex-col items-center fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-fit">
+      <div className="flex flex-col items-center fixed bottom-3 left-1/2 -translate-x-1/2 z-70 w-fit">
         <button
           onClick={() => setShowMenu(!showMenu)}
           aria-label="Jump to section"

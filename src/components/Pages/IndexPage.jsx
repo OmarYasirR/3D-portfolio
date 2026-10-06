@@ -9,7 +9,7 @@ const IndexPage = ({ pages, onPageNavigate, showHeader, isMobile }) => {
         {showHeader && (
           <h1 className="title text-3xl font-bold text-center mb-8">
             Portfolio Index
-          </h1>
+</h1> 
         )}
 
         {/* Index List */}

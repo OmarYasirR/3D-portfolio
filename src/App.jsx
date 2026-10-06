@@ -21,7 +21,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className={`flex justify-center items-center min-h-screen bg-dark`}>
+      <div className={`flex justify-center items-center min-h-screen bg-stone-50`}>
         <div className="text-white text-xl">Loading Portfolio...</div>
       </div>
     );
@@ -29,7 +29,7 @@ function App() {
 
 
   return (
-    <div className={`h-screen w-screen bg-dark text-gray-800 overflow-hidden flex justify-center items-center`}>
+    <div className={`h-screen w-screen bg-stone-50 text-gray-800 overflow-hidden flex justify-center items-center`}>
       <Book isMobile={isMobile} />
     </div>
   );

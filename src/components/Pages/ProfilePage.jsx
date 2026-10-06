@@ -14,14 +14,8 @@ const handleDownloadCV = () => {
   document.body.removeChild(link);
 };
 
-  const handleContactMe = () => {
-    // Add contact me functionality
-    console.log('Contact Me clicked');
-    
-  };
-
   return (
-    <div className="flex flex-col p-2 pt-8 justify-center items-center">
+    <div className="flex flex-col p-2 justify-center items-center">
       <img
         src={profile.image}
         alt="Profile"
@@ -34,8 +28,8 @@ const handleDownloadCV = () => {
       
       <p className="text-justify mb-2 px-4 text-xs font-bold">{profile.description}</p>
       
-      <div className="btn-box flex mt-2">
-        <Button variant="primary" className="mx-4" onClick={handleDownloadCV}>
+      <div className="btn-box flex">
+        <Button variant="primary" className="mx-2" onClick={handleDownloadCV}>
           Download CV
         </Button>
       </div>

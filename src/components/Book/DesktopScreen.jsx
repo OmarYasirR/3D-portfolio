@@ -62,7 +62,7 @@ const DesktopScreen = () => {
     }, 300);
   }
 
-  const { pagePairs, loading } = usePages(navigateToIndex);
+  const { pagePairs, loading, Pages } = usePages(navigateToIndex);
 
   
   //   const papers = useMemo(() => {
@@ -89,7 +89,7 @@ const DesktopScreen = () => {
 
 
   useEffect(() => {
-    console.log(leftPages)
+    console.log(Pages)
     console.log(pagePairs?.length)
     if (papersRef.current) {
       const children = Array.from(papersRef.current.children);
@@ -111,12 +111,10 @@ const DesktopScreen = () => {
       ) : (
         <div
           ref={papersRef}
-          className={`transition-all ease-in-out duration-500 animate-show-book wrapper relative w-[55rem] h-[35rem] overflow-hidden ${
-            !isStartd && "flex justify-center"
-          }`}
-        >
+          className={`transition-all ease-in-out duration-500 animate-show-book wrapper relative w-[55rem] h-[35rem] overflow-hidden ${ !isStartd ? 'flex justify-center' : '' }`}
+        >   
           {pagePairs.map((item, index) => (
-            <Paper key={item.id} style={{ zIndex: pagePairs.length - index }} pageName={item.id} >
+            <Paper key={item.id} style={{ zIndex: pagePairs.length - index }} isStartd={isStartd} >
               <Page
                 content={item.front.component}
                 pageNum={item.front.number !== 0 ? item.front.number : ""}

@@ -1,7 +1,7 @@
 import React from "react";
 import PageNavigation from "../UI/PageNavigation";
 
-const Page = ({ content, isfront = false, pageNum, fliper, isFlippable, isCover = false, navDisabled = false, isMobile = false, handlePrevPage }) => {
+const Page = ({ content, isfront = false, pageNum, fliper, isFlippable, isCover = false, navDisabled = false, isMobile = false, handlePrevPage, style={} }) => {
   const handleFlip = () => {
     if (!isFlippable && !navDisabled && fliper) {
       fliper();
@@ -11,11 +11,11 @@ const Page = ({ content, isfront = false, pageNum, fliper, isFlippable, isCover 
 
   return (
     <div
-      className={`bg-gradient-to-r absolute inset-0 backface-hidden shadow-2xl from-white to-gray-100 ${
-        !isfront && "rotate-y-180"
-      }`}
-      style={{ backfaceVisibility: "hidden" }}
-    >
+      className={`absolute inset-0 backface-hidden shadow-xl bg-gradient-to-br from-blue-50 to-indigo-50
+        ${!isfront && "rotate-y-180"}
+        `}
+      style={{ backfaceVisibility: "hidden", ...style }}
+    > 
       <div className="w-full h-full relative">
         {content}
 

@@ -19,7 +19,7 @@ const PageNavigation = ({
     return (
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-50">
         <button
-          onClick={handleClick}
+          onClick={isMobile? handlePrevPage: handleClick}
           disabled={disabled}
           aria-label={disabled ? "Loading portfolio" : "Open portfolio"}
           className={`px-4 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 flex items-center space-x-2 group/btn backdrop-blur-sm border border-white/20 ${
@@ -43,7 +43,7 @@ const PageNavigation = ({
   {
     if (isMobile) {
       return (
-        <div className="absolute top-1/2 left-0 right-0 flex justify-between px-4 z-50">
+        <div className="absolute top-1/2 left-0 right-0 flex justify-between px-2 z-50">
           <button
             onClick={handleClick}
             aria-label="Next page"
