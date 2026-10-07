@@ -11,14 +11,14 @@ import IndexPage from "../components/Pages/IndexPage";
 import CoverPage from "../components/Pages/CoverPage";
 import PortfolioContentPage from "../components/Pages/PortfolioContentPage";
 import { portfolioData } from "../data/portfolioData";
-import { fetchProjects } from "../api/fetchProjects.js"
+// import { fetchProjects } from "../api/fetchProjects.js"
 
 const INDEX_ENTRIES_PER_PAGE = 4;
 
-// async function fetchProjects() {
-//   const res = await axios.get("/api/projects");
-//   return res.data.projects ||  [];
-// }
+async function fetchProjects() {
+  const res = await axios.get("/api/projects");
+  return res.data.projects ||  [];
+}
 
 // Splits an array into fixed-size chunks.
 function chunk(array, size) {
