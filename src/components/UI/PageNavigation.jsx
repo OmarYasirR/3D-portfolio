@@ -70,7 +70,7 @@ const PageNavigation = ({
       aria-label={isBack ? "Previous page" : "Next page"}
       className={`nextprev-btn absolute top-1/2 ${
         isBack ? "left-4" : "right-4"
-      } -translate-y-1/2 text-2xl text-primary bg-white rounded-full shadow-lg hover:bg-primary hover:text-white transition-all`}
+      } -translate-y-1/2 text-2xl w-8 h-8 flex items-center justify-center text-primary bg-white rounded-full shadow-lg hover:bg-primary hover:text-white transition-all`}
       data-page={`turn-${pageNumber}`}
     >
       <i
