@@ -77,9 +77,9 @@ function resolveImageUrl(imageUrl, readmeDownloadUrl) {
     }
   }
 
-// ─── VERCEL DEPLOYMENTS ──────────────────────────────────────────────
+// ─── VERCEL PROJECTS ─────────────────────────────────────────────────
 
-async function getVercelDeployments() {
+async function getVercelProjects() {
   if (!VERCEL_TOKEN) {
     console.warn(
       'VITE_VERCEL_TOKEN is not set — falling back to repo.homepage for live URLs.'
@@ -88,16 +88,40 @@ async function getVercelDeployments() {
   }
 
   try {
-    const res = await axios.get('https://api.vercel.com/v6/deployments', {
+    const res = await axios.get('https://api.vercel.com/v9/projects', {
       headers: { Authorization: `Bearer ${VERCEL_TOKEN}` },
-      params: { limit: 100 }, // fetch enough to cover your projects
+      // No teamId — defaults to your personal account.
+      params: { limit: 100 },
     });
-    console.log('Fetched Vercel deployments:', res.data.deployments);
-    return res.data.deployments || [];
+
+    const projects = res.data.projects || [];
+    return projects;
   } catch (err) {
-    console.error('Failed to fetch Vercel deployments:', err.message);
+    console.error("Failed to fetch Vercel projects:", err.message);
     return []; // fail gracefully — projects still render with homepage fallback
   }
+}
+
+// Extract the *stable* production URL from a Vercel project object.
+// Returns the custom domain if one exists, otherwise the
+// <project-name>.vercel.app production alias.
+// NEVER returns an immutable deployment URL like <project>-<hash>-<team>.vercel.app.
+function getVercelProductionUrl(project) {
+  if (!project) return null;
+
+  const prod = project.targets?.production;
+  if (!prod) return null;
+
+  // `alias` is an array of every domain currently pointing at production.
+  const aliases = Array.isArray(prod.alias) ? prod.alias : [];
+
+  // Prefer a custom domain (anything not ending in .vercel.app).
+  const customDomain = aliases.find((d) => !d.endsWith('.vercel.app'));
+
+  // Fall back to the first alias, then to prod.url.
+  const chosen = customDomain || aliases[0] || prod.url;
+
+  return chosen ? `https://${chosen}` : null;
 }
 
 // ─── CATEGORY INFERENCE ──────────────────────────────────────────────
@@ -136,8 +160,7 @@ export async function fetchProjects() {
   }
 
   try {
-    // Fetch repos and deployments in parallel — same as the old server code.
-    const [reposRes, vercelDeployments] = await Promise.all([
+    const [reposRes, vercelProjects] = await Promise.all([
       axios.get(
         `https://api.github.com/users/${OWNER}/repos?per_page=100&sort=updated`,
         {
@@ -147,16 +170,17 @@ export async function fetchProjects() {
           },
         }
       ),
-      getVercelDeployments(),
+      getVercelProjects(),
     ]);
-    
+
     const projects = await Promise.all(
       reposRes.data.map(async (repo) => {
-        const match = vercelDeployments.find(
-          (dep) => normalizeName(repo.name) === normalizeName(dep.name)
+        // Match on project name — no more `dep.name` from a deployment record.
+        const match = vercelProjects.find(
+          (proj) => normalizeName(repo.name) === normalizeName(proj.name)
         );
         const imgURL = await fetchReadmeImage(repo.name).catch(() => null);
-        return mapRepoToProject(repo, match?.url || null, imgURL);
+        return mapRepoToProject(repo, getVercelProductionUrl(match), imgURL);
       })
     );
 

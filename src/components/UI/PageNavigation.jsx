@@ -43,18 +43,18 @@ const PageNavigation = ({
   {
     if (isMobile) {
       return (
-        <div className="absolute top-1/2 left-0 right-0 flex justify-between px-2 z-50">
+        <div className="absolute top-1/2 left-0 right-0 flex justify-between px-1 z-40">
           <button
             onClick={handleClick}
             aria-label="Next page"
-            className="text-2xl text-primary bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg hover:bg-primary hover:text-white transition-all opacity-50 hover:opacity-100"
+            className="text-2xl text-primary transition-all opacity-30"
           >
             <i className="bx bx-chevron-left"></i>
           </button>
           <button
             onClick={handlePrevPage}
             aria-label="Previous page"
-            className="text-2xl text-primary bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg hover:bg-primary hover:text-white transition-all opacity-50 hover:opacity-100"
+            className="text-2xl text-primary transition-all opacity-30"
           >
             <i className="bx bx-chevron-right"></i>
           </button>
@@ -70,7 +70,7 @@ const PageNavigation = ({
       aria-label={isBack ? "Previous page" : "Next page"}
       className={`nextprev-btn absolute top-1/2 ${
         isBack ? "left-4" : "right-4"
-      } -translate-y-1/2 text-2xl text-primary bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg hover:bg-primary hover:text-white transition-all`}
+      } -translate-y-1/2 text-2xl text-primary bg-white rounded-full shadow-lg hover:bg-primary hover:text-white transition-all`}
       data-page={`turn-${pageNumber}`}
     >
       <i
