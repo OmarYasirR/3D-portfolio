@@ -1,5 +1,7 @@
 # 3D Portfolio Book — Interactive Developer Portfolio
 
+![screenshot](public/Omar Yasir Dafalla developer logo.png)
+
 ![React](https://img.shields.io/badge/React-18.2.0-blue)
 ![Vite](https://img.shields.io/badge/Vite-5.0-646CFF)
 ![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC)
